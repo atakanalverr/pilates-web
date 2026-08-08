@@ -4,47 +4,66 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pilates Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="#" class="logo">Pilates<span>Studio</span></a>
+    <a href="#" class="logo logo-brand">
+      <img src="assets/pilates-studio-logo.png" alt="Pilates Studio — Güray Fit Center logosu" class="logo-mark">
+      <span class="logo-text">Pilates<span class="logo-accent">Studio</span></span>
+    </a>
     <nav class="nav">
-      <a href="#hakkimda">Hakkımda</a>
       <a href="#hizmetler">Hizmetler</a>
       <a href="#fiyatlar">Fiyatlar</a>
+      <a href="#randevu">Yeni Kayıt Oluştur</a>
       <a href="#iletisim">İletişim</a>
+      <a href="admin.html">Panel</a>
+      <div class="nav-dropdown" id="uyelerDropdown">
+        <button type="button" class="nav-dropdown-trigger" id="uyelerTrigger">Üyeler</button>
+        <div class="nav-dropdown-menu" id="uyelerMenu">
+          <a href="admin.html?trainer=G%C3%BCray">Güray</a>
+          <a href="admin.html?trainer=Nuray">Nuray</a>
+        </div>
+      </div>
     </nav>
     <button class="nav-toggle" aria-label="Menüyü aç">☰</button>
   </div>
 </header>
 
 <section class="hero">
-  <div class="container hero-inner">
-    <h1>Bedeninle Barış, <br>Nefesinle Denge</h1>
-    <p>Kişiye özel pilates dersleriyle güç, esneklik ve iç huzur bul.</p>
-    <a href="#iletisim" class="btn btn-primary">Ücretsiz Deneme Dersi</a>
+ <div class="hero-frame">
+  <div class="hero-media">
+    <img class="hero-slide" src="https://images.pexels.com/photos/31509828/pexels-photo-31509828.jpeg?auto=compress&cs=tinysrgb&w=2400&dpr=2" alt="Aletli pilates (reformer)">
+    <img class="hero-slide" src="https://images.pexels.com/photos/4842735/pexels-photo-4842735.jpeg?auto=compress&cs=tinysrgb&w=2400&dpr=2" alt="Power plate egzersizi">
+    <img class="hero-slide" src="https://images.pexels.com/photos/4148919/pexels-photo-4148919.jpeg?auto=compress&cs=tinysrgb&w=2400&dpr=2" alt="Mat pilates">
+    <img class="hero-slide" src="https://images.pexels.com/photos/30483032/pexels-photo-30483032.jpeg?auto=compress&cs=tinysrgb&w=2400&dpr=2" alt="EMS antrenmanı">
+    <img class="hero-slide" src="https://images.pexels.com/photos/1103242/pexels-photo-1103242.jpeg?auto=compress&cs=tinysrgb&w=2400&dpr=2" alt="Hamile pilatesi">
   </div>
-</section>
-
-<section id="hakkimda" class="section">
-  <div class="container about-inner">
-    <div class="about-photo" aria-hidden="true"></div>
-    <div class="about-text">
-      <h2>Hakkımda</h2>
-      <p>
-        Merhaba, ben [İsim]. Yıllardır pilates ve hareket eğitimi üzerine
-        çalışıyorum. Amacım, her seviyeden öğrenciye kendi bedenini
-        tanıyacağı, güvenli ve keyifli bir alan sunmak.
-      </p>
-      <p>
-        Bu metni birazdan senin bilgilerinle güncelleyeceğiz — deneyim,
-        sertifikalar, hikayen buraya gelecek.
-      </p>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1 class="animated-heading">Bedeninle Barış,<br>Nefesinle Denge</h1>
+      <p>Kişiye özel pilates dersleriyle güç, esneklik ve iç huzur bul.</p>
+      <a href="#randevu" class="btn btn-primary">Yeni Kayıt Oluştur</a>
+    </div>
+    <div class="hero-features" aria-hidden="true">
+      <span class="hero-features-label">Neler çalışıyoruz</span>
+      <div class="hero-features-track" id="heroFeaturesTrack">
+        <span class="hero-feature-item">Mat Pilates</span>
+        <span class="hero-feature-item">Reformer Pilates</span>
+        <span class="hero-feature-item">Kişiye Özel Ders</span>
+        <span class="hero-feature-item">Nefes &amp; Farkındalık</span>
+      </div>
     </div>
   </div>
+ </div>
 </section>
 
 <section id="hizmetler" class="section section-alt">
@@ -56,8 +75,20 @@
         <p>Vücut ağırlığıyla yapılan, temel gücü ve esnekliği artıran dersler.</p>
       </div>
       <div class="card">
-        <h3>Reformer Pilates</h3>
-        <p>Özel ekipmanla desteklenen, direnç bazlı birebir ya da küçük grup dersleri.</p>
+        <h3>Aletli Pilates</h3>
+        <p>Reformer ile desteklenen, direnç bazlı birebir ya da küçük grup dersleri.</p>
+      </div>
+      <div class="card">
+        <h3>Power Plate</h3>
+        <p>Titreşimli platform üzerinde kısa sürede yüksek verim sağlayan antrenman.</p>
+      </div>
+      <div class="card">
+        <h3>EMS Antrenmanı</h3>
+        <p>Elektriksel kas stimülasyonuyla desteklenen, yoğun ve zaman kazandıran seanslar.</p>
+      </div>
+      <div class="card">
+        <h3>Hamile Pilatesi</h3>
+        <p>Gebelik dönemine özel, güvenli ve nazik hareketlerle desteklenen program.</p>
       </div>
       <div class="card">
         <h3>Özel Ders</h3>
@@ -70,30 +101,124 @@
 <section id="fiyatlar" class="section">
   <div class="container">
     <h2 class="section-title">Fiyatlar</h2>
-    <div class="cards">
-      <div class="card price-card">
-        <h3>Tekli Ders</h3>
-        <p class="price">₺XXX</p>
-        <p>1 seans</p>
+    <div class="price-groups">
+      <div class="cards price-row">
+        <div class="card price-card">
+          <h3>Pilates</h3>
+          <p class="price">6.000₺</p>
+          <p>Haftada 2 seans</p>
+        </div>
+        <div class="card price-card">
+          <h3>Pilates</h3>
+          <p class="price">8.000₺</p>
+          <p>Haftada 3 seans</p>
+        </div>
       </div>
-      <div class="card price-card featured">
-        <h3>8 Ders Paketi</h3>
-        <p class="price">₺XXXX</p>
-        <p>8 seans / aylık</p>
+      <div class="cards price-row price-row-single">
+        <div class="card price-card">
+          <h3>Power Plate</h3>
+          <p class="price">5.000₺</p>
+          <p>Haftada 3 seans</p>
+        </div>
       </div>
-      <div class="card price-card">
-        <h3>12 Ders Paketi</h3>
-        <p class="price">₺XXXX</p>
-        <p>12 seans / aylık</p>
+      <div class="cards price-row">
+        <div class="card price-card">
+          <h3>Mix Paket</h3>
+          <p class="price">5.500₺</p>
+          <p>10 seans</p>
+        </div>
+        <div class="card price-card">
+          <h3>Mix Paket</h3>
+          <p class="price">6.500₺</p>
+          <p>12 seans</p>
+        </div>
       </div>
     </div>
+
+    <div class="price-extra">
+      <div class="price-extra-col">
+        <h3>Düet Dersler</h3>
+        <ul>
+          <li><span>Power Plate — Haftada 2 Seans</span><span>Kişi 5.500₺ · Toplam 11.000₺</span></li>
+          <li><span>Power Plate — Haftada 3 Seans</span><span>Kişi 4.500₺ · Toplam 13.500₺</span></li>
+          <li><span>Pilates — Haftada 2 Seans</span><span>Kişi 5.000₺ · Toplam 10.000₺</span></li>
+          <li><span>Pilates — Haftada 3 Seans</span><span>Kişi 7.000₺ · Toplam 14.000₺</span></li>
+          <li><span>Mix Paket — 10 Seans</span><span>5.000₺</span></li>
+          <li><span>Mix Paket — 12 Seans</span><span>6.500₺</span></li>
+        </ul>
+      </div>
+      <div class="price-extra-col">
+        <h3>İçecek Ücretleri</h3>
+        <ul>
+          <li><span>Su</span><span>15₺</span></li>
+          <li><span>Soda</span><span>20₺</span></li>
+          <li><span>Türk Kahvesi</span><span>30₺</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="randevu" class="section">
+  <div class="container">
+    <h2 class="section-title">Yeni Kayıt Oluştur</h2>
+    <p class="section-sub">Aşağıdaki formu doldur, haftalık ders programını oluşturalım — ekibimiz en kısa sürede seninle iletişime geçip onaylayacak.</p>
+
+    <form id="bookingForm" class="booking-form" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="bName">İsim - Soyisim *</label>
+          <input type="text" id="bName" required>
+        </div>
+        <div class="field">
+          <label for="bPhone">İletişim Numarası *</label>
+          <input type="tel" id="bPhone" required placeholder="05XX XXX XX XX">
+        </div>
+        <div class="field">
+          <label for="bPackage">Paket *</label>
+          <select id="bPackage" required>
+            <option value="">Paket seçin</option>
+            <option value="pilates-2">Pilates (Haftada 2 Seans) — 6.000₺</option>
+            <option value="pilates-3">Pilates (Haftada 3 Seans) — 8.000₺</option>
+            <option value="power-3">Power Plate (Haftada 3 Seans) — 5.000₺</option>
+            <option value="mix-10">Mix 10 Seans — 5.500₺</option>
+            <option value="mix-12">Mix 12 Seans — 6.500₺</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bStartDate">Başlangıç Tarihi</label>
+          <input type="text" id="bStartDate" placeholder="Tarih seçiniz" required readonly>
+        </div>
+        <div class="field">
+          <label for="bCoach">Antrenör Seçimi *</label>
+          <select id="bCoach" required>
+            <option value="">Antrenör seçin</option>
+            <option value="Güray">Güray</option>
+            <option value="Nuray">Nuray</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field field-wide" id="weeklyBlock" hidden>
+        <label>Haftalık Gün ve Saatler <span class="weekly-badge" id="weeklyBadge"></span></label>
+        <p class="form-help" id="weeklyHint"></p>
+        <div class="weekly-slots" id="weeklySlotsContainer"></div>
+        <button type="button" class="icon-btn" id="addWeeklySlotBtn">+ Gün Ekle</button>
+      </div>
+
+      <p class="form-msg" id="bookingMsg" role="status"></p>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="bookingSubmitBtn">Kaydı Oluştur</button>
+      </div>
+    </form>
   </div>
 </section>
 
 <section id="iletisim" class="section section-alt">
   <div class="container contact-inner">
     <h2 class="section-title">İletişim</h2>
-    <p class="contact-sub">Deneme dersi ya da sorularınız için bana ulaşın.</p>
+    <p class="contact-sub">Sorularınız için bize ulaşın.</p>
     <div class="contact-details">
       <a href="mailto:info@pilatesstudio.com">info@pilatesstudio.com</a>
       <a href="tel:+900000000000">+90 000 000 00 00</a>
@@ -108,6 +233,13 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/tr.js"></script>
+<script src="db.js"></script>
 <script src="script.js"></script>
+<script src="hero.js"></script>
+<script src="booking.js"></script>
 </body>
 </html>
