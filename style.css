@@ -419,6 +419,19 @@ body {
   border: 1px solid var(--line);
 }
 
+/* Hizmetler: 6 kart var, 4'lü gridde son satırda boşluk kalıyordu — 3 sütuna sabitle (2x3, tam dolu) */
+#hizmetler .cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  #hizmetler .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  #hizmetler .cards { grid-template-columns: 1fr; }
+}
+
 .card {
   background: var(--cream-soft);
   padding: 48px 36px;
