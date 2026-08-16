@@ -13,11 +13,15 @@
   --color-clay-dark: #8c5a3c;
   --color-sage: #6c7a5e;
   --color-ok: #4c7a4f;
+  --color-ok-dark: #3d6440;
   --color-ok-bg: #e7f0e6;
   --color-pending: #a9741f;
   --color-pending-bg: #f7ecd8;
   --color-late: #b0453a;
+  --color-late-dark: #953a30;
   --color-late-bg: #f8e6e3;
+  --color-partial: #3d6b8a;
+  --color-partial-bg: #e2edf3;
 }
 
 body {
@@ -33,7 +37,7 @@ body {
 @keyframes toast-in {
   from {
     opacity: 0;
-    transform: translate(-50%, 12px);
+    transform: translate(-50%, -12px);
   }
   to {
     opacity: 1;
@@ -76,5 +80,9 @@ body {
 
   .badge-late {
     @apply bg-late-bg text-late;
+  }
+
+  .badge-partial {
+    @apply bg-partial-bg text-partial;
   }
 }

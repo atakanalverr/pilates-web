@@ -10,6 +10,7 @@ const ALLOWED_FIELDS = new Set([
   "start_date",
   "trainer",
   "payment_status",
+  "paid_amount",
   "notes",
 ]);
 

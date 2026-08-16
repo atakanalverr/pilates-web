@@ -43,33 +43,51 @@ export default function AdminPanel() {
   }, [reloadPackages, reloadMembers]);
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <header className="mb-10 flex flex-col items-center gap-10 text-center">
-        <span className="font-serif-display px-6 py-4 text-3xl italic text-ink">
-          Güray <span className="text-clay">Fit Center</span>
-        </span>
+        <div className="flex flex-col items-center gap-1 px-6 py-4">
+          <span className="font-serif-display text-3xl italic text-ink">
+            Güray <span className="text-clay">Fit Center</span>
+          </span>
+          <span className="font-serif-display text-lg italic text-ink-soft">
+            Pilates Studio
+          </span>
+        </div>
 
         <div className="flex flex-col items-center gap-2">
           <span className="text-xs uppercase tracking-widest text-ink-soft">
             Antrenör Seçimi
           </span>
-          <div className="flex gap-2">
-            {TRAINERS.map((trainer) => (
-              <button
-                key={trainer}
-                type="button"
-                onClick={() =>
-                  setSelectedTrainer((current) => (current === trainer ? null : trainer))
-                }
-                className={
-                  selectedTrainer === trainer
-                    ? "rounded-full bg-clay px-5 py-2 text-sm font-medium text-white transition"
-                    : "rounded-full border border-line px-5 py-2 text-sm font-medium text-ink transition hover:border-clay hover:text-clay"
-                }
-              >
-                {trainer}
-              </button>
-            ))}
+          <div className="flex flex-col items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setSelectedTrainer(null)}
+              className={
+                selectedTrainer === null
+                  ? "rounded-full bg-clay px-5 py-2 text-sm font-medium text-white transition"
+                  : "rounded-full border border-line px-5 py-2 text-sm font-medium text-ink transition hover:border-clay hover:text-clay"
+              }
+            >
+              Tüm Üyeler
+            </button>
+            <div className="flex gap-2">
+              {TRAINERS.map((trainer) => (
+                <button
+                  key={trainer}
+                  type="button"
+                  onClick={() =>
+                    setSelectedTrainer((current) => (current === trainer ? null : trainer))
+                  }
+                  className={
+                    selectedTrainer === trainer
+                      ? "rounded-full bg-clay px-5 py-2 text-sm font-medium text-white transition"
+                      : "rounded-full border border-line px-5 py-2 text-sm font-medium text-ink transition hover:border-clay hover:text-clay"
+                  }
+                >
+                  {trainer}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </header>

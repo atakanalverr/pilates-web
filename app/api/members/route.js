@@ -24,8 +24,8 @@ export async function POST(request) {
   db.prepare(
     `INSERT INTO members
      (id, full_name, phone, package_name, sessions_total, sessions_remaining,
-      start_date, trainer, payment_status, notes, created_at)
-     VALUES (?,?,?,?,?,?,?,?,?,?,?)`
+      start_date, trainer, payment_status, paid_amount, notes, created_at)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`
   ).run(
     id,
     payload.full_name,
@@ -36,6 +36,7 @@ export async function POST(request) {
     payload.start_date || new Date().toISOString().slice(0, 10),
     payload.trainer ?? null,
     payload.payment_status ?? "Bekliyor",
+    payload.paid_amount ?? null,
     payload.notes ?? null,
     nowIso()
   );

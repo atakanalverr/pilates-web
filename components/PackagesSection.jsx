@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { api } from "@/lib/api";
+import ConfirmDialog from "./ConfirmDialog";
 
 function formatPrice(price) {
   return `${Number(price || 0).toLocaleString("tr-TR")}₺`;
@@ -14,6 +15,7 @@ export default function PackagesSection({ packages, onReload, notify }) {
   const [submitting, setSubmitting] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [editDraft, setEditDraft] = useState(null);
+  const [deletingPackage, setDeletingPackage] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -66,8 +68,10 @@ export default function PackagesSection({ packages, onReload, notify }) {
     }
   }
 
-  async function deletePackage(pkg) {
-    if (!confirm(`"${pkg.name}" paketi silinsin mi?`)) return;
+  async function confirmDeletePackage() {
+    const pkg = deletingPackage;
+    if (!pkg) return;
+    setDeletingPackage(null);
     try {
       await api.packages.remove(pkg.id);
       await onReload();
@@ -78,6 +82,7 @@ export default function PackagesSection({ packages, onReload, notify }) {
   }
 
   return (
+    <>
     <section className="rounded-2xl border border-line bg-white/60 p-6 shadow-sm">
       <h2 className="font-serif-display text-2xl italic text-ink">Paketler</h2>
 
@@ -187,7 +192,7 @@ export default function PackagesSection({ packages, onReload, notify }) {
                       <button className="icon-btn" onClick={() => startEdit(p)}>
                         Düzenle
                       </button>
-                      <button className="icon-btn-danger" onClick={() => deletePackage(p)}>
+                      <button className="icon-btn-danger" onClick={() => setDeletingPackage(p)}>
                         Sil
                       </button>
                     </div>
@@ -199,6 +204,16 @@ export default function PackagesSection({ packages, onReload, notify }) {
         </table>
       </div>
     </section>
+
+    {deletingPackage && (
+      <ConfirmDialog
+        title="Paketi Sil"
+        message={`"${deletingPackage.name}" paketi silinsin mi?`}
+        onConfirm={confirmDeletePackage}
+        onCancel={() => setDeletingPackage(null)}
+      />
+    )}
+    </>
   );
 }
 

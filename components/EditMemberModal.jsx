@@ -11,6 +11,7 @@ export default function EditMemberModal({ member, packages, onClose, onSave, not
     start_date: member.start_date,
     trainer: member.trainer || "Güray",
     payment_status: member.payment_status,
+    paid_amount: member.paid_amount || "",
     notes: member.notes || "",
   });
   const [submitting, setSubmitting] = useState(false);
@@ -27,6 +28,7 @@ export default function EditMemberModal({ member, packages, onClose, onSave, not
         full_name: fullName,
         phone: form.phone.trim(),
         sessions_remaining: Number(form.sessions_remaining) || 0,
+        paid_amount: form.payment_status === "Bir Kısmı Ödendi" ? form.paid_amount.trim() : "",
         notes: form.notes.trim(),
       });
     } catch (err) {
@@ -119,10 +121,22 @@ export default function EditMemberModal({ member, packages, onClose, onSave, not
               onChange={(e) => setForm({ ...form, payment_status: e.target.value })}
             >
               <option value="Ödendi">Ödendi</option>
+              <option value="Bir Kısmı Ödendi">Bir Kısmı Ödendi</option>
               <option value="Bekliyor">Bekliyor</option>
               <option value="Gecikti">Gecikti</option>
             </select>
           </Field>
+          {form.payment_status === "Bir Kısmı Ödendi" && (
+            <Field label="Ne Kadar Ücret Ödendi?">
+              <input
+                type="text"
+                className="input"
+                placeholder="Örn. 3000₺ nakit ödendi, kalanı ay sonunda"
+                value={form.paid_amount}
+                onChange={(e) => setForm({ ...form, paid_amount: e.target.value })}
+              />
+            </Field>
+          )}
           <div className="sm:col-span-2">
             <Field label="Notlar">
               <textarea
