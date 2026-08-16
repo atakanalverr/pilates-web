@@ -87,7 +87,7 @@ export default function EditMemberModal({ member, packages, onClose, onSave, not
               ))}
             </select>
           </Field>
-          <Field label="Kalan Ders">
+          <Field label="Kalan Seans">
             <input
               type="number"
               min="0"
@@ -96,6 +96,28 @@ export default function EditMemberModal({ member, packages, onClose, onSave, not
               onChange={(e) => setForm({ ...form, sessions_remaining: e.target.value })}
             />
           </Field>
+          <div className="flex items-end gap-2 sm:col-span-2">
+            <button
+              type="button"
+              className="icon-btn"
+              onClick={() => setForm({ ...form, sessions_remaining: 0 })}
+            >
+              Üye Seanslarının Tümünü Tamamladı.
+            </button>
+            <button
+              type="button"
+              className="icon-btn"
+              onClick={() =>
+                setForm({
+                  ...form,
+                  sessions_remaining: member.sessions_total,
+                  payment_status: "Gecikti",
+                })
+              }
+            >
+              Üye Paketini Yenile.
+            </button>
+          </div>
           <Field label="Başlangıç Tarihi">
             <input
               type="date"

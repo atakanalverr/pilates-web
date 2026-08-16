@@ -112,7 +112,7 @@ export default function MembersSection({ members, packages, onReload, notify, se
     try {
       const newRemaining = member.sessions_remaining - 1;
       await api.members.update(member.id, { sessions_remaining: newRemaining });
-      notify(`${member.full_name} — kalan ders: ${newRemaining}`, "success");
+      notify(`${member.full_name} — Kalan Seans: ${newRemaining}`, "success");
       await onReload();
     } catch (err) {
       notify("Ders işlenemedi: " + err.message, "error");
@@ -120,6 +120,7 @@ export default function MembersSection({ members, packages, onReload, notify, se
       setAttendingId(null);
     }
   }
+
 
   async function saveMemberEdit(id, payload) {
     await api.members.update(id, payload);
@@ -187,7 +188,7 @@ export default function MembersSection({ members, packages, onReload, notify, se
                         disabled={m.sessions_remaining <= 0 || attendingId === m.id}
                         onClick={() => recordAttendance(m)}
                       >
-                        -1 Ders
+                        1 Seans Düşür
                       </button>
                       <button className="icon-btn" onClick={() => setEditingMember(m)}>
                         Düzenle
